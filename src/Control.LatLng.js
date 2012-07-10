@@ -4,6 +4,7 @@
  */
 L.Control.LatLng = L.Control.extend({
 	options: {
+		position: 'topright',
 		editable: true
 	},
 	
@@ -13,24 +14,27 @@ L.Control.LatLng = L.Control.extend({
 		this._lat = 0;
 		this._lng = 0;
 
-		this._map = map;
 		this._init(className, container, map);
+
 		return container;
 	},
 
 	getValue: function () {
-		return new L.LatLng(this._lat.value, this._lng.value);
+		if(this._lat.value != 0 && this._lng.value != 0) {
+			return new L.LatLng(this._lat.value, this._lng.value);
+		}
 	},
 
-	_updateControl: function (event) {
-		if (event) {
+	_updateControl: function (init) {
+		if (init) {
 			this._map.panTo(this.getValue());
 		} else {
-			var mapcenter = this._map.getCenter();
-			this._lat.value = L.Util.formatNum(mapcenter.lat, 5);
-			this._lng.value = L.Util.formatNum(mapcenter.lng, 5);
+			if(this._map instanceof L.Map) {
+				var mapcenter = this._map.getCenter();
+				this._lat.value = L.Util.formatNum(mapcenter.lat, 5);
+				this._lng.value = L.Util.formatNum(mapcenter.lng, 5);
+			}
 		}
-		
 	},
 	
 	_init: function(className, container, map) {
