@@ -2,7 +2,7 @@
 
 This Leaflet plugin extends the [Leaflet](https://github.com/CloudMade/Leaflet) API with a LatLng control. 
 
-<img src="examples/latlngcontrol.png">
+<img src="https://github.com/jieter/Leaflet.latlngcontrol/raw/master/examples/latlngcontrol.png">
 
 # Code examples
 After loading ```leaflet.js```, ```src/Control.LatLng.js``` and ```src/Control.LatLng.css``` should be included and the control is activated by default.
