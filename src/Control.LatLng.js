@@ -9,7 +9,7 @@ L.Control.LatLng = L.Control.extend({
 	},
 	
 	onAdd: function (map) {
-		var className = 'leaflet-control-latlng',
+		var className = 'leaflet-bar leaflet-control-latlng',
 			container = L.DomUtil.create('div', className);
 		this._lat = 0;
 		this._lng = 0;
@@ -30,22 +30,19 @@ L.Control.LatLng = L.Control.extend({
 			this._map.panTo(this.getValue());
 		} else {
 			if(this._map instanceof L.Map) {
-				var mapcenter = this._map.getCenter();
-				this._lat.value = L.Util.formatNum(mapcenter.lat, 5);
-				this._lng.value = L.Util.formatNum(mapcenter.lng, 5);
+				var center = this._map.getCenter();
+				this._lat.value = L.Util.formatNum(center.lat, 5);
+				this._lng.value = L.Util.formatNum(center.lng, 5);
 			}
 		}
 	},
 	
 	_init: function(className, container, map) {
-		this._lat = L.DomUtil.create('input', className + '-lat', container);
-		this._lng = L.DomUtil.create('input', className + '-lng', container);
+		this._lat = L.DomUtil.create('input', 'leaflet-control-lat', container);
+		this._lng = L.DomUtil.create('input', 'leaflet-control-lng', container);
 
 		var self = this,
 			updateClos = function () { self._updateControl(); };
-		
-		L.DomEvent
-			.addListener(map, 'load', updateClos);
 
 		L.DomEvent
 			.addListener(container, L.Draggable.START, L.DomEvent.stopPropagation)
@@ -72,13 +69,17 @@ L.Control.LatLng = L.Control.extend({
 	}
 });
 
+L.control.latLng = function (options) {
+	return new L.Control.LatLng(options);
+};
+
 L.Map.mergeOptions({
 	latLngControl: true
 });
 
 L.Map.addInitHook(function () {
 	if (this.options.latLngControl) {
-		this.latLngControl = new L.Control.LatLng();
+		this.latLngControl = L.control.latLng();
 		this.addControl(this.latLngControl);
 	}
 });

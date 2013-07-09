@@ -12,13 +12,12 @@ After loading ```leaflet.js```, ```src/Control.LatLng.js``` and ```src/Control.L
 Another position:
 ```javascript
 map.removeControl(map.latLngControl);
-map.addControl(new L.Control.LatLng({ position: "topleft" }));
+map.addControl(L.control.latLng({ position: "topleft" }));
 ```
 
 ## Todo
  - Support control positioning of the control.
  - 51° 28' 38" N coordinate syntax.
- - Fix the first update of the control after adding it manually to the map.
 
 ## Credits
 The code of this plugin is heavily inspired by [Kartena](https://github.com/kartena/)'s Zoomslider and PanControl
