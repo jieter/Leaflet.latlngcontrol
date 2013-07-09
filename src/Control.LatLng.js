@@ -21,7 +21,7 @@ L.Control.LatLng = L.Control.extend({
 
 	getValue: function () {
 		if(this._lat.value != 0 && this._lng.value != 0) {
-			return new L.LatLng(this._lat.value, this._lng.value);
+			return L.latLng(this._lat.value, this._lng.value);
 		}
 	},
 
@@ -67,6 +67,8 @@ L.Control.LatLng = L.Control.extend({
 			this._lat.disabled = "disabled";
 			this._lng.disabled = "disabled";
 		}
+
+		this._updateControl();
 	}
 });
 

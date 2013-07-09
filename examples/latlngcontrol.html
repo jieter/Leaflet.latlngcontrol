@@ -5,25 +5,38 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="lib/leaflet/dist/leaflet.css" />
-	<!--[if lte IE 8]><link rel="stylesheet" href="../dist/leaflet.ie.css" /><![endif]-->
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.css" />
+	<!--[if lte IE 8]>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.ie.css" />
+	<![endif]-->
 	
+	<style>
+		html, body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		#map {
+			 width: 100%; height: 100%;
+		}
+	</style>
 	<link rel="stylesheet" href="../src/Control.LatLng.css" />
 </head>
 <body>
-	<div id="map" style="width: 600px; height: 400px"></div>
+	<div id="map"></div>
 
-	<script src="lib/leaflet/dist/leaflet-src.js"></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet-src.js"></script>
 	<script src="../src/Control.LatLng.js"></script>
 	<script>
-		var map = new L.Map('map');
-		var cloudmadeUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png',
-			cloudmadeAttribution = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
-			cloudmade = new L.TileLayer(cloudmadeUrl, {maxZoom: 18, attribution: cloudmadeAttribution});
+		var map = new L.Map('map', {
+			center: [51.505, -0.09],
+			zoom: 4
+		});
 
-		map.addLayer(cloudmade);
-
-		map.setView(new L.LatLng(51.505, -0.09), 13);
+		var layer = L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  			"attribution": '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+		}).addTo(map);
 	</script>
 </body>
 </html>
