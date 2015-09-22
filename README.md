@@ -4,7 +4,7 @@ This Leaflet plugin extends the [Leaflet](https://github.com/CloudMade/Leaflet) 
  - The Latitude and Longnitude are displayed in a control.
  - The user can change the values to move the map's center.
 
-<img src="https://github.com/jieter/Leaflet.latlngcontrol/raw/master/examples/latlngcontrol.png">
+<img src="https://github.com/jieter/Leaflet.latlngcontrol/raw/gh-pages/examples/latlngcontrol.png">
 
 # Code examples
 After loading ```leaflet.js```, ```src/Control.LatLng.js``` and ```src/Control.LatLng.css``` should be included and the control is activated by default.
