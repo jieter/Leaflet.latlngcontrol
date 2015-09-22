@@ -3,7 +3,7 @@
  */
 L.Control.LatLng = L.Control.extend({
 	options: {
-		position: 'topleft',
+		position: 'topright',
 		editable: true,
 		precision: 5
 	},
@@ -46,8 +46,8 @@ L.Control.LatLng = L.Control.extend({
 	_updateControl: function (init) {
 		if (this._map && this._map._loaded) {
 			var center = this._map.getCenter();
-			this._lat.value = L.Util.formatNum(center.lat, 5);
-			this._lng.value = L.Util.formatNum(center.lng, 5);
+			this._lat.value = L.Util.formatNum(center.lat, this.options.precision);
+			this._lng.value = L.Util.formatNum(center.lng, this.options.precision);
 		}
 	},
 
